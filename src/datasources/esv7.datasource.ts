@@ -3,7 +3,7 @@ import {juggler} from '@loopback/repository';
 
 const config = {
   name: 'esv7',
-  connector: 'es',
+  connector: 'esv6',
   index: 'catalog',
   apiVersion: '7',
   defaultSize: '',
