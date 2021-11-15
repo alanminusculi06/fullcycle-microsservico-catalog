@@ -10,7 +10,7 @@ const config = {
   configuration: {
     node: process.env.ELASTIC_SEARCH_HOST,
     requestTimeout: process.env.ELASTIC_SEARCH_REQUEST_TIMEOUT,
-    pintTimeout: process.env.ELASTIC_SEARCH_PING_TIMEOUT
+    pingTimeout: process.env.ELASTIC_SEARCH_PING_TIMEOUT,
   }
 };
 

@@ -59,7 +59,9 @@ export class PingController {
     await this.categoryReposity.create({
       id: '1',
       name: 'teste',
-      description: 'teste teste'
+      description: 'teste teste',
+      created_at: new Date().toUTCString(),
+      updated_at: new Date().toUTCString()
     });
     return this.categoryReposity.find();
   }
