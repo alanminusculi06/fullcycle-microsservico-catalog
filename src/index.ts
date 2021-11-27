@@ -1,3 +1,4 @@
+import {RestServer} from '@loopback/rest/dist/rest.server';
 import {ApplicationConfig, FullcycleMicrosservicoCatalogApplication} from './application';
 
 export * from './application';
@@ -7,7 +8,8 @@ export async function main(options: ApplicationConfig = {}) {
   await app.boot();
   await app.start();
 
-  const url = app.restServer.url;
+  const restServer = app.getSync<RestServer>('servers.RestServer');
+  const url = restServer.url;
   console.log(`Server is running at ${url}`);
   console.log(`Try ${url}/ping`);
 
@@ -31,6 +33,9 @@ if (require.main === module) {
         setServersFromRequest: true,
       },
     },
+    rabbitmq: {
+      uri: process.env.RABBITMQ_URI
+    }
   };
   main(config).catch(err => {
     console.error('Cannot start the application.', err);

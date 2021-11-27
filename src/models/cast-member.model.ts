@@ -1,14 +1,13 @@
 import {Entity, model, property} from '@loopback/repository';
-export interface SmallCategory {
-  id: string;
-  name: string;
-  is_active: boolean;
+
+export enum CastMemberType {
+  DIRECTOR = 1,
+  ACTOR = 2,
 }
 
 @model()
-export class Category extends Entity {
+export class CastMember extends Entity {
   @property({
-    type: 'string',
     id: true,
     generated: false,
     required: true,
@@ -26,21 +25,13 @@ export class Category extends Entity {
   name: string;
 
   @property({
-    type: 'string',
-    required: false,
+    type: 'number',
+    required: true,
     jsonSchema: {
-      nullable: true,
+      enum: [CastMemberType.DIRECTOR, CastMemberType.ACTOR],
     },
-    default: null,
   })
-  description: string;
-
-  @property({
-    type: 'boolean',
-    required: false,
-    default: true,
-  })
-  is_active: boolean;
+  type: number;
 
   @property({
     type: 'date',
@@ -54,13 +45,13 @@ export class Category extends Entity {
   })
   updated_at: string;
 
-  constructor(data?: Partial<Category>) {
+  constructor(data?: Partial<CastMember>) {
     super(data);
   }
 }
 
-export interface CategoryRelations {
+export interface CastMemberRelations {
   // describe navigational properties here
 }
 
-export type CategoryWithRelations = Category & CategoryRelations;
+export type CastMemberWithRelations = CastMember & CastMemberRelations;
